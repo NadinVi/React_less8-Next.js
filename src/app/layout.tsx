@@ -1,8 +1,13 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+//import { Inter, Roboto } from 'next/font/google'
 import './globals.css'
+import ThemeRegistry from '@/providers/ThemeRegistry'
+import { ReactNode } from 'react'
+import { Footer } from '@/components/Footer/Footer'
+import { Container } from '@mui/material'
+import { Header } from '@/components/Header/Header'
 
-const inter = Inter({ subsets: ['latin'] })
+//const inter = Roboto({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -12,11 +17,23 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <ThemeRegistry options={{ key: 'mui' }}>
+          <div className='layout'>
+            <Header />
+            <main className='main'>
+              <Container>
+                {children}
+              </Container>
+            </main>
+            <Footer />
+          </div>
+        </ThemeRegistry>
+      </body>
     </html>
   )
 }
