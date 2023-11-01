@@ -15,13 +15,13 @@ const Header = () => {
         <Button component={Link} href="/" color="inherit">
           Photos
         </Button>
-        <Button component={Link} href="posts" color="inherit">
+        <Button component={Link} href="/posts" color="inherit">
           Posts
         </Button>
-        <Button component={Link} href="comments" color="inherit">
+        <Button component={Link} href="/comments" color="inherit">
           Comments
         </Button>
-        <Button component={Link} href="users" color="inherit">
+        <Button component={Link} href="/users" color="inherit">
           Users
         </Button>
       </Toolbar>

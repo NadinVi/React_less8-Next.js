@@ -6,8 +6,8 @@ export interface FetchArg<Updates = Record<string, unknown>> extends FetchArgs {
   signal?: AbortSignal
   userId?: number
   updates?: Updates
-  commentId?: string
-  postId?: string
+  commentId?: number
+  postId?: number
 }
 
 export interface Photo {

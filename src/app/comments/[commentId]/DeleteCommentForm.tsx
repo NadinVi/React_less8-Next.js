@@ -4,24 +4,24 @@ import { Button } from '@mui/material'
 import { useRouter } from 'next/navigation'
 import JsonPlaseholderAPI from '@/api/JsonPlaseholderAPI/JsonPlaseholderAPI'
 
-interface DeleteUserFormProps {
-  userId: string;
+interface DeleteCommentFormProps {
+  commentId: string;
 }
 
-const DeleteUserForm = ({ userId }: DeleteUserFormProps) => {
+const DeleteUserForm = ({ commentId }: DeleteCommentFormProps) => {
   const router = useRouter();
 
   const handleSubmit = useCallback<FormEventHandler<HTMLFormElement>>(
     async (event) => {
       event.preventDefault();
-      if (!confirm('Please confirm that you want to delete this user.')) {
+      if (!confirm('Please confirm that you want to delete this comment.')) {
         return;
       }
-      await JsonPlaseholderAPI.deleteUser({ userId: Number(userId) });
+      await JsonPlaseholderAPI.deleteUser({ commentId: Number(commentId) });
 
-      router.replace('/users', { scroll: true })
+      router.replace('/comments', { scroll: true })
     },
-    [router, userId],
+    [router, commentId],
   );
 
   return (
@@ -29,10 +29,10 @@ const DeleteUserForm = ({ userId }: DeleteUserFormProps) => {
       onSubmit={handleSubmit}
     >
       <Button variant="contained" color="error" type="submit">
-        Delete User
+        Delete Comment
       </Button>
     </form>
   );
 };
 
-export default DeleteUserForm
+export default DeleteUserForm;

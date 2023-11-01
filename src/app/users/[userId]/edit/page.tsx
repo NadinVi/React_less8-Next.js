@@ -1,7 +1,9 @@
 'use client'
 import { Box, Button, Card, CardContent, FormControl, InputLabel, OutlinedInput, Typography } from '@mui/material'
 import JsonPlaseholderAPI, { User } from '@/api/JsonPlaseholderAPI/JsonPlaseholderAPI';
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'
+//import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation'
 
 interface EditUserDelailsProps {
   params: {
@@ -10,6 +12,8 @@ interface EditUserDelailsProps {
 }
 
 const EditUser = ({ params: { userId } }: EditUserDelailsProps) => {
+  const router = useRouter()
+
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
@@ -36,8 +40,23 @@ const EditUser = ({ params: { userId } }: EditUserDelailsProps) => {
     return null
   };
 
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    try {
+      await JsonPlaseholderAPI.updateUser({
+        signal: new AbortController().signal,
+        userId: Number(userId),
+        updates: Object.fromEntries(formData),
+      });
+      //redirect(`/users`);
+      router.push(`/users/${userId}`, { scroll: true })
+    } catch (error) {
+      console.error('Error', error);
+    }
+  };
   
-    
   return (
     <>
     <Typography variant="h5" gutterBottom>
@@ -45,7 +64,7 @@ const EditUser = ({ params: { userId } }: EditUserDelailsProps) => {
       </Typography>
       <Card>
         <CardContent>
-          <form method="patch">
+          <form onSubmit={handleSubmit}>
             <Box mb={2}>
               <FormControl fullWidth>
                 <InputLabel htmlFor="name">Name</InputLabel>
@@ -78,7 +97,7 @@ const EditUser = ({ params: { userId } }: EditUserDelailsProps) => {
             </Box>
             <Button variant={'contained'} type="submit" color={'primary'}>
               Save
-            </Button>
+            </Button>  
           </form>
         </CardContent>
       </Card>

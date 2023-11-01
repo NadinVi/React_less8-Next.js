@@ -1,4 +1,4 @@
-import type { FetchArg } from './types'
+import type { FetchArgs } from './types'
 
 class API {
   private readonly baseUrl: string
@@ -7,7 +7,7 @@ class API {
     this.baseUrl = baseUrl
   }
 
-  async fetch<ResponceType = unknown>({ path = '', method = 'GET', body, signal, headers = {}, ...rest }: FetchArg) {
+  async fetch<ResponceType = unknown>({ path = '', method = 'GET', body, signal, headers = {}, ...rest }: FetchArgs) {
     const response = await fetch(`${this.baseUrl}/${path}`, {
       method,
       signal,

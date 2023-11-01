@@ -1,7 +1,7 @@
-import { Box, Button, Card, CardContent, List, ListItem, ListItemText, Typography } from '@mui/material';
-import JsonPlaseholderAPI, {type User} from "@/api/JsonPlaseholderAPI/JsonPlaseholderAPI";
-import Link from 'next/link';
-import DeleteUserForm from './DeleteUserForm';
+import { Box, Button, Card, CardContent, List, ListItem, ListItemText, Typography } from '@mui/material'
+import JsonPlaseholderAPI, {type User} from "@/api/JsonPlaseholderAPI/JsonPlaseholderAPI"
+import Link from 'next/link'
+import DeleteUserForm from './DeleteUserForm'
 
 interface UserDetailsProps {
   params: {

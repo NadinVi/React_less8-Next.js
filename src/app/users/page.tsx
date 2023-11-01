@@ -4,7 +4,8 @@ import Link from 'next/link';
 
 const Users = async () => {
   const users = await JsonPlaseholderAPI.getUsers({ signal: new AbortController().signal, cache: 'no-cache'});
-  console.log({ users })
+  //console.log({ users })
+
   return (
     <>
     <Typography variant="h5" gutterBottom>
